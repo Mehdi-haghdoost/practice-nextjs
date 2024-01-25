@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { useRouter } from 'next/router';
 
 function ArticlesDetails() {
+
+    const route = useRouter()
+    console.log(route.query.shortName);
+
   return (
-    <h1>Articles Details</h1>
+    <h1>{`Articles Details (${route.query.shortName})`}</h1>
   )
 }
 
