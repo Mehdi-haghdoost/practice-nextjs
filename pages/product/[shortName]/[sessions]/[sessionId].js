@@ -6,6 +6,8 @@ function Session() {
     const route = useRouter()
     console.log(route.query);
 
+    
+
   return (
     <h1>{route.query.shortName}</h1>
   )
