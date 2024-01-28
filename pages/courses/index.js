@@ -18,7 +18,18 @@ function index() {
       <ul>
         {courses.map((course) => (
           <li>
-            <Link href={`/courses/${course.shortName}`} replace>{course.title}</Link>
+            <Link
+             href={{
+              pathname : '/courses/[shortName]',
+              query : {
+                shortName : course.shortName,
+              },
+             }}>
+              
+              
+              {course.title}
+             
+             </Link>
           </li>
         ))}
 
