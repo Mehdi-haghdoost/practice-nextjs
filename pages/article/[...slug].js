@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react'
+import styles from './../../styles/article.module.css'
 
 function Article() {
 
@@ -15,7 +16,7 @@ function Article() {
     }
 
     return (
-        <h1>you see single Article</h1>
+        <h1 className={styles.title}>you see single Article</h1>
     )
 }
 
