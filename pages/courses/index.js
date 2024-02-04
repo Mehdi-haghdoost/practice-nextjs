@@ -34,6 +34,17 @@ function index() {
         ))}
 
       </ul>
+      <style jsx>{`
+             h1 {
+              color : blue;
+              font-size : 5rem;
+             }
+             li {
+              color : green;
+              list-style-type: none;
+              padding : 0.5rem 0 ;
+             }
+        `}</style>
     </>
   )
 }
