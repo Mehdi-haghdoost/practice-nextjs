@@ -24,7 +24,7 @@ function index() {
 
       <ul>
         {courses.map((course) => (
-          <li>
+          <li className='alert alert-danger'>
             <Link
              href={{
               pathname : '/courses/[shortName]',
