@@ -1,5 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
+
+import styled from 'styled-components'
+
 function index() {
 
   const courses = [
@@ -10,9 +13,13 @@ function index() {
     { id: 5, title: 'Canvas', shortName: 'canvas' },
   ]
 
+  const Title = styled.h1 `
+    color : green;
+  `
+
   return (
     <>
-      <h1>All pages : </h1>
+      <Title>All pages : </Title>
       <hr />
 
       <ul>
@@ -35,12 +42,8 @@ function index() {
 
       </ul>
       <style jsx>{`
-             h1 {
-              color : blue;
-              font-size : 5rem;
-             }
              li {
-              color : green;
+              color : blue;
               list-style-type: none;
               padding : 0.5rem 0 ;
              }
