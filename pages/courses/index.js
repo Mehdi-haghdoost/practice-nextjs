@@ -1,7 +1,6 @@
 import React from 'react'
-import Link from 'next/link'
+import Course from '@/Components/Course/Course'
 
-import styled from 'styled-components'
 
 function index() {
 
@@ -13,31 +12,16 @@ function index() {
     { id: 5, title: 'Canvas', shortName: 'canvas' },
   ]
 
-  const Title = styled.h1 `
-    color : green;
-  `
+ 
 
   return (
     <>
-      <Title>All pages : </Title>
+      <h1>All pages : </h1>
       <hr />
 
       <ul>
         {courses.map((course) => (
-          <li className='alert alert-danger'>
-            <Link
-             href={{
-              pathname : '/courses/[shortName]',
-              query : {
-                shortName : course.shortName,
-              },
-             }}>
-              
-              
-              {course.title}
-             
-             </Link>
-          </li>
+          <Course {...course} />
         ))}
 
       </ul>
