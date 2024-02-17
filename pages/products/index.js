@@ -9,7 +9,7 @@ function Products({products}) {
         products.map(product => (
           <>
           <h2 className={styles.title} key={product.id}>{product.id}.{product.title}</h2>
-          <img className={styles.productImg} src={product.image} alt="clothes" />
+          <img className={styles.product_Img} src={product.image} alt="clothes" />
           <hr />
           </>
         ))
