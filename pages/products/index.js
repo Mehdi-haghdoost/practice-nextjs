@@ -1,20 +1,26 @@
 import React from 'react'
 import styles from './../../styles/products.module.css'
+import Link from 'next/link'
 
-function Products({products}) {
+function Products({ products }) {
   return (
     <>
-    <div>
-      {
-        products.map(product => (
-          <>
-          <h2 className={styles.title} key={product.id}>{product.id}.{product.title}</h2>
-          <img className={styles.product_Img} src={product.image} alt="clothes" />
-          <hr />
-          </>
-        ))
-      }
-    </div>
+      <div>
+        {
+          products.map(product => (
+            <>
+              <h2 className={styles.title} key={product.id}>
+                <Link href={`/products/${product.id}`}>
+                  {product.id}.{product.title}
+                </Link>
+
+              </h2>
+              <img className={styles.product_Img} src={product.image} alt="clothes" />
+              <hr />
+            </>
+          ))
+        }
+      </div>
     </>
 
   )
@@ -25,8 +31,8 @@ export async function getStaticProps() {
   const data = await res.json()
 
   return {
-    props : {
-      products : data
+    props: {
+      products: data
     }
   }
 }
