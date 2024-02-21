@@ -3,7 +3,7 @@ import React from "react";
 
 function User({ user }) {
   const router = useRouter();
-console.log(router);
+  console.log(router);
   if (router.isFallback) {
     return <h1>Fallback page: Please wait</h1>;
   }
@@ -35,7 +35,8 @@ export async function getStaticProps(context) {
 
   if (res.status !== 200) {
     return {
-      notFound: true,
+      // notFound: true,
+      redirect: { destination: '/' },
     };
   }
 
