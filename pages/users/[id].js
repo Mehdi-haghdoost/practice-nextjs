@@ -3,10 +3,10 @@ import React from "react";
 
 function User({ user }) {
   const router = useRouter();
-  console.log(router);
-  if (router.isFallback) {
-    return <h1>Fallback page: Please wait</h1>;
-  }
+
+  // if (router.isFallback) {
+  //   return <h1>Fallback page: Please wait</h1>;
+  // }
 
   return <h1>User Name: {user.name}</h1>;
 }
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true, // true, false, "blocking"
+    fallback: "blocking", // true, false, "blocking"
   };
 }
 
@@ -36,16 +36,20 @@ export async function getStaticProps(context) {
   if (res.status !== 200) {
     return {
       // notFound: true,
-      redirect: { destination: '/' },
+      redirect: { destination: "/" },
     };
   }
 
   const data = await res.json();
 
+  console.log('ISR');
+
+
   return {
     props: {
       user: data,
     },
+    revalidate :5
   };
 }
 

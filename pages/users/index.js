@@ -11,7 +11,7 @@ function Users({ users }) {
     <div>
       {users.map((user) => (
         <h2 key={user.id}>
-          <Link href={`/users/${user.id}`}>
+          <Link href={`/users/${user.id}`} prefetch={false}>
             {user.id}. {user.name}
           </Link>
         </h2>
