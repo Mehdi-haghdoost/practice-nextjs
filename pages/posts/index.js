@@ -1,12 +1,14 @@
 import React from 'react'
-
+import Link from 'next/link';
 function Posts({ posts }) {
     return (
         <ul>
             {
                 posts.map((post) => (
                     <li>
-                        <h2>{post.title}</h2>
+                        <Link href={`/posts/${post.id}`}>
+                            <h2>{post.title}</h2>
+                        </Link>
                         <p>{post.body}</p>
                         <hr />
                     </li>
