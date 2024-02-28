@@ -19,7 +19,8 @@ export async function getServerSideProps(context) {
 
     if (!Object.keys(data).length) {
         return {
-            notFound: true,
+            // notFound: true,
+            redirect : {destination : '/'},
         };
     }
 
