@@ -6,7 +6,7 @@ function Todos() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://localhost:4000/todos')
             .then(res => res.json())
             .then(data => setTodos(data))
     }, [])
@@ -17,7 +17,7 @@ function Todos() {
                 todos.map((todo) => (
                     <li key={todo.id}>
                         <Link href={`/todos/${todo.id}`}>
-                            <h3>{todo.title}</h3>
+                            <h3>{todo.id}.{todo.title}</h3>
                         </Link>
                         <hr />
                         <p>
