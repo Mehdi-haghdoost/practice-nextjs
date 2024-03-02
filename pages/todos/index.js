@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Todo from './[id]';
-
+import Link from 'next/link';
 function Todos() {
 
     const [todos, setTodos] = useState([]);
@@ -16,7 +15,14 @@ function Todos() {
         <ul>
             {todos.length ? (
                 todos.map((todo) => (
-                   <Todo key={todo.id} {...todo} />
+                   <li key={todo.id}>
+                    <Link href={`/todos/${todo.id}`}>
+                        <h3>
+                            {todo.id}- {todo.title}
+                        </h3>
+                        <hr />
+                    </Link>
+                   </li>
                 ))
             ) : <h1>Todos notFound</h1>
             }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Todo({ id, completed, title }) {
+function Todo({ todo: { id, completed, title } }) {
     const [todo, setTodo] = useState({ id, completed, title })
 
     async function toggleCompleteHandler() {
@@ -37,6 +37,18 @@ function Todo({ id, completed, title }) {
             <hr />
         </li>
     )
+}
+
+export async function getServerSideProps(context) {
+    const { params } = context;
+    const res = await fetch(`http://localhost:4000/todos/${params.id}`)
+    const data = await res.json();
+
+    return {
+        props: {
+            todo: data,
+        }
+    };
 }
 
 export default Todo
