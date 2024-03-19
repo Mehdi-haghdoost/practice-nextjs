@@ -1,3 +1,12 @@
+
+const users = [
+    {
+        username: "mehdi",
+        email: "mehdi.leo2014@gmail.com",
+        password: "mehdi1010",
+    },
+];
+
 const habdler = (req, res) => {
     switch (req.method) {
         case 'GET': {
@@ -5,7 +14,11 @@ const habdler = (req, res) => {
             break;
         }
         case 'POST': {
-            res.json({ message: 'create new user' })
+
+            //Req Body
+            const { username, email, password } = req.body
+            users.push({ username, email, password })
+            res.json({ message: 'create new user', data: users })
             break;
         }
         case 'PUT': {
