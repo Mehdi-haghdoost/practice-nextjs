@@ -29,6 +29,24 @@
             "username": "reza",
             "email": "reza.leo2014@gmail.com",
             "password": "reza1010"
+        },
+        {
+            "id": "02877ad1-c73a-4088-98ad-3bcba201d9ad",
+            "username": "ramin",
+            "email": "ramin@gmail.com",
+            "password": "ramin1010"
+        },
+        {
+            "id": "kgkshgkshgkshgls0",
+            "username": "nahid",
+            "email": "nahid@gmail.com",
+            "password": "nahid1010"
+        },
+        {
+            "id": "2df68063-4d8d-430a-900a-c17d307ede01",
+            "username": "pedram",
+            "email": "pedram@gmail.com",
+            "password": "pedram1010"
         }
     ]
 }

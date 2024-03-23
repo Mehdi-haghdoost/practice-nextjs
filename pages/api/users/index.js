@@ -12,7 +12,9 @@ const habdler = (req, res) => {
 
             const parsedData = JSON.parse(data)
 
-            res.json(parsedData.users)
+            res
+                .status(200)
+                .json(parsedData.users)
             break;
         }
         case 'POST': {
@@ -34,7 +36,7 @@ const habdler = (req, res) => {
                 password,
             })
 
-            const err = fs.writeFileSync(dataPath, JSON, stringify(parsedData))
+            const err = fs.writeFileSync(dataPath, JSON.stringify(parsedData))
 
             if (err) {
 
