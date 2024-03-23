@@ -1,10 +1,17 @@
+import fs from 'fs';
+import path from 'path';
 
-import users from "../../../data/db";
 
 const habdler = (req, res) => {
     switch (req.method) {
         case 'GET': {
-            res.json(users)
+            const dataPath = path.join(process.cwd(), "data", "db.json")
+
+            const data = fs.readFileSync(dataPath)
+
+            const parsedData = JSON.parse(data)
+            
+            res.json(parsedData.users)
             break;
         }
         case 'POST': {
