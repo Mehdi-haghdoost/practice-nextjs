@@ -1,5 +1,6 @@
-import fs from 'fs';
+import fs, { writeFileSync } from 'fs';
 import path from 'path';
+import { stringify } from 'querystring';
 
 
 const habdler = (req, res) => {
@@ -10,17 +11,40 @@ const habdler = (req, res) => {
             const data = fs.readFileSync(dataPath)
 
             const parsedData = JSON.parse(data)
-            
+
             res.json(parsedData.users)
             break;
         }
         case 'POST': {
+            const dataPath = path.join(process.cwd(), "data", "db.json")
+
+            const data = fs.readFileSync(dataPath)
+
+            const parsedData = JSON.parse(data)
+
+
 
             //Req Body
             const { username, email, password } = req.body
-            users.push({ username, email, password })
-            res.json({ message: 'create new user', data: users })
-            break;
+
+            parsedData.users.push({
+                id: crypto.randomUUID(),
+                username,
+                email,
+                password,
+            })
+
+            const err = fs.writeFileSync(dataPath, JSON, stringify(parsedData))
+
+            if (err) {
+
+            } else {
+                res
+                    .status(201)
+                    .json({ message: "user registered successfully :))" })
+                break;
+            }
+
         }
         case 'PUT': {
             res.json({ message: 'user"s infromation edited' })
