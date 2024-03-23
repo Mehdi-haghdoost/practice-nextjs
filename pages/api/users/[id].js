@@ -9,9 +9,13 @@ const handler = (req, res) => {
         const user = users.find(user => user.id === +id)
 
         if (user) {
-            return res.json(user)
+            return res
+                .status(201)
+                .json(user)
         } else {
-            return res.json({ message: "user not found !!" })
+            return res
+                .status(404)
+                .json({ message: "user not found !!" })
         }
     }
 
