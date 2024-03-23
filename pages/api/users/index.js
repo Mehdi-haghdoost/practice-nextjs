@@ -20,7 +20,7 @@ const habdler = (req, res) => {
         case 'POST': {
             const dataPath = path.join(process.cwd(), "data", "db.json")
 
-            const data = fs.readFileSync(dataPath)
+            const data = fs.readFileSync(dataPath)2df68063-4d8d-430a-900a-c17d307ede01
 
             const parsedData = JSON.parse(data)
 
