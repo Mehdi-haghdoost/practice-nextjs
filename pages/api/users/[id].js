@@ -75,6 +75,16 @@ const handler = (req, res) => {
 
             })
 
+            // parsedData.users.find((user) => {
+            //     if (String(user.id) === String(id)) {
+            //         user.username = username;
+            //         user.email = email;
+            //         user.password = password;
+
+            //         return true;
+            //     }
+            // })
+
             const err = fs.writeFileSync(dataPath, JSON.stringify({ ...parsedData }))
 
             if (err) {

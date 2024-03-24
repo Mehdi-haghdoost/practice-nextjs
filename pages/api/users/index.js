@@ -43,7 +43,7 @@ const habdler = (req, res) => {
             } else {
                 res
                     .status(201)
-                    .json({ message: "user registered successfully :))" })
+                    .json({ message: "user registered successfully :))",parsedData })
                 break;
             }
 
