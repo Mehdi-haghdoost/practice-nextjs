@@ -50,6 +50,45 @@ const handler = (req, res) => {
                 .status(404)
                 .json({ message: "user not found :))" })
         }
+    } else if (req.method === 'PUT') {
+        const { username, email, password } = req.body;
+
+        const dataPath = path.join(process.cwd(), "data", "db.json");
+
+        const data = fs.readFileSync(dataPath);
+
+        const parsedData = JSON.parse(data)
+
+        const isUser = parsedData.users.some(
+            (user) => String(user.id) === String(id)
+        );
+
+        if (isUser) {
+            parsedData.users.some((user) => {
+                if (String(user.id) === String(id)) {
+                    user.username = username;
+                    user.email = email;
+                    user.password = password;
+
+                    return true;
+                }
+
+            })
+
+            const err = fs.writeFileSync(dataPath, JSON.stringify({ ...parsedData }))
+
+            if (err) {
+                //codes
+            } else {
+                return res
+                    .json({ message: "user updated successfully :))" })
+            }
+
+        } else {
+            return res
+                .status(404)
+                .json({ message: "user not found !!" })
+        }
     }
 
 }

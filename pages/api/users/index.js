@@ -1,6 +1,6 @@
-import fs, { writeFileSync } from 'fs';
+import fs from 'fs';
 import path from 'path';
-import { stringify } from 'querystring';
+
 
 
 const habdler = (req, res) => {
@@ -20,7 +20,7 @@ const habdler = (req, res) => {
         case 'POST': {
             const dataPath = path.join(process.cwd(), "data", "db.json")
 
-            const data = fs.readFileSync(dataPath)2df68063-4d8d-430a-900a-c17d307ede01
+            const data = fs.readFileSync(dataPath)
 
             const parsedData = JSON.parse(data)
 
