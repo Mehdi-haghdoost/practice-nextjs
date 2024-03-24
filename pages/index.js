@@ -52,21 +52,21 @@ export default function Home() {
       email: form.values.email,
       password: form.values.password,
     }
-    console.log('newUser =>' , newUser);
+    console.log('newUser =>', newUser);
 
-    // const res = await fetch('/api/users', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(newUser)
-    // })
+    const res = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
 
-    // const data = await res.json();
+    const data = await res.json();
 
 
-    // console.log('Response =>', res);
-    // console.log("response data =>", data);
+    console.log('Response =>', res);
+    console.log("response data =>", data);
 
     // if (res.status === 201) {
     //   setUsername('')
@@ -124,7 +124,7 @@ export default function Home() {
               }
 
               <button type="submit"
-              onSubmit={ registerNewUser}
+                onClick={registerNewUser}
                 className={form.isSubmitting ? 'invalid-btn' : ''}
                 disabled={form.isSubmitting}
               >
