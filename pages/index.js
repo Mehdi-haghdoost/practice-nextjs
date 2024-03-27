@@ -54,19 +54,19 @@ export default function Home() {
     }
     console.log('newUser =>', newUser);
 
-    const res = await fetch('/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newUser)
-    })
+    // const res = await fetch('/api/users', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(newUser)
+    // })
 
-    const data = await res.json();
+    // const data = await res.json();
 
 
-    console.log('Response =>', res);
-    console.log("response data =>", data);
+    // console.log('Response =>', res);
+    // console.log("response data =>", data);
 
     // if (res.status === 201) {
     //   setUsername('')
