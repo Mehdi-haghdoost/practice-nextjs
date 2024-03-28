@@ -1,9 +1,15 @@
+import connectToDB from '../../../utils/db';
+import userModel from '../../../models/user';
+
 import fs from 'fs';
 import path from 'path';
 
 
 
-const habdler = (req, res) => {
+const habdler = async (req, res) => {
+
+    connectToDB();
+
     switch (req.method) {
         case 'GET': {
             const dataPath = path.join(process.cwd(), "data", "db.json")
@@ -17,34 +23,30 @@ const habdler = (req, res) => {
                 .json(parsedData.users)
             break;
         }
+
         case 'POST': {
-            const dataPath = path.join(process.cwd(), "data", "db.json")
-
-            const data = fs.readFileSync(dataPath)
-
-            const parsedData = JSON.parse(data)
-
-
-
             //Req Body
             const { username, email, password } = req.body
 
-            parsedData.users.push({
-                id: crypto.randomUUID(),
-                username,
-                email,
-                password,
-            })
 
-            const err = fs.writeFileSync(dataPath, JSON.stringify(parsedData))
+            if (username.length < 3 || !email.trim() || password.length < 8) {
+                return res
+                    .status(422)
+                    .res({ message: "Data is not valid !!" })
+            }
+            const user = await userModel.create({ username, email, password });
 
-            if (err) {
+            console.log(user);
 
-            } else {
-                res
+            if (user) {
+                return res
                     .status(201)
-                    .json({ message: "user registered successfully :))",parsedData })
-                break;
+                    .json({ message: "user registered successfully :))" })
+            } else {
+
+                return res
+                    .status(409)
+                    .json({ message: "Unknow Error !!" })
             }
 
         }

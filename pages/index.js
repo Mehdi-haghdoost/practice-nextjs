@@ -8,7 +8,7 @@ export default function Home() {
     initialValues: { Username: '', email: '', password: '' },
 
     onSubmit: (values, { setSubmitting }) => {
-      console.log("Form Inputs Data =>", values);
+
       setTimeout(() => {
         setSubmitting(false);
       }, 3000);
@@ -54,25 +54,18 @@ export default function Home() {
     }
     console.log('newUser =>', newUser);
 
-    // const res = await fetch('/api/users', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(newUser)
-    // })
+    const res = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
 
-    // const data = await res.json();
+    const data = await res.json();
+    console.log('data =>', data);
 
 
-    // console.log('Response =>', res);
-    // console.log("response data =>", data);
-
-    // if (res.status === 201) {
-    //   setUsername('')
-    //   setEmail('')
-    //   setPassword('')
-    // }
   }
 
   return (
