@@ -12,15 +12,11 @@ const habdler = async (req, res) => {
 
     switch (req.method) {
         case 'GET': {
-            const dataPath = path.join(process.cwd(), "data", "db.json")
+            const users = await userModel.find();
 
-            const data = fs.readFileSync(dataPath)
+            
 
-            const parsedData = JSON.parse(data)
-
-            res
-                .status(200)
-                .json(parsedData.users)
+            res.json(users)
             break;
         }
 
