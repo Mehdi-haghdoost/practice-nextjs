@@ -2,12 +2,15 @@ import userModel from '../../../models/user';
 
 import fs from 'fs';
 import path from 'path';
+import connectToDB from '../../../utils/db';
 
 const handler = async (req, res) => {
+    connectToDB();
 
     const { id } = req.query
 
     if (req.method === "GET") {
+
         const user = await userModel.find({ _id: id })
 
         if (user) {
@@ -20,37 +23,13 @@ const handler = async (req, res) => {
                 .json({ message: "user not found !!" })
         }
     } else if (req.method === 'DELETE') {
-
-
-        const dataPath = path.join(process.cwd(), "data", "db.json")
-
-        const data = fs.readFileSync(dataPath);
-
-        const parsedData = JSON.parse(data);
-
-        const isUser = parsedData.users.some(
-            (user) => String(user.id) === String(id)
-        );
-
-        if (isUser) {
-            const newUser = parsedData.users.filter(
-                (user) => String(user.id) !== String(id)
-            )
-
-            const err = fs.writeFileSync(dataPath, JSON.stringify({ ...parsedData, users: newUser }))
-
-            if (err) {
-                //codes
-            } else {
-                return res
-                    .status(200)
-                    .json({ message: "user removed successfully :))" })
-            }
-        } else {
+        const deletedUser = await userModel.findOneAndDelete({ _id: id })
+        if (deletedUser) {
             return res
-                .status(404)
-                .json({ message: "user not found :))" })
+                .status(200)
+                .json({ message: "user removed successfully :))" })
         }
+
     } else if (req.method === 'PUT') {
         const { username, email, password } = req.body;
 
