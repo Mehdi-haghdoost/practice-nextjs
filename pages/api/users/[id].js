@@ -3,6 +3,7 @@ import userModel from '../../../models/user';
 import fs from 'fs';
 import path from 'path';
 import connectToDB from '../../../utils/db';
+import { isValidObjectId } from 'mongoose';
 
 const handler = async (req, res) => {
     connectToDB();
@@ -23,12 +24,20 @@ const handler = async (req, res) => {
                 .json({ message: "user not found !!" })
         }
     } else if (req.method === 'DELETE') {
-        const deletedUser = await userModel.findOneAndDelete({ _id: id })
-        if (deletedUser) {
+        
+        if (isValidObjectId(id)) {
+            const deletedUser = await userModel.findOneAndDelete({ _id: id })
+            if (deletedUser) {
+                return res
+                    .status(200)
+                    .json({ message: "user removed successfully :))" })
+            }
+        } else {
             return res
-                .status(200)
-                .json({ message: "user removed successfully :))" })
+                .status(422)
+                .json({ message: "user Id is not valid !! :))" })
         }
+
 
     } else if (req.method === 'PUT') {
         const { username, email, password } = req.body;
