@@ -24,8 +24,9 @@ const handler = async (req, res) => {
                 .json({ message: "user not found !!" })
         }
     } else if (req.method === 'DELETE') {
-        
+
         if (isValidObjectId(id)) {
+
             const deletedUser = await userModel.findOneAndDelete({ _id: id })
             if (deletedUser) {
                 return res

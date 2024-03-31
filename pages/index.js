@@ -1,9 +1,10 @@
 import React from "react";
 import { useFormik } from "formik";
+import connectToDB from '../utils/db'
+import userModel from "../models/user"
 
-
-export default function Home() {
-
+export default function Home({ users }) {
+  console.log(users);
   const form = useFormik({
     initialValues: { Username: '', email: '', password: '' },
 
@@ -52,7 +53,7 @@ export default function Home() {
       email: form.values.email,
       password: form.values.password,
     }
-    console.log('newUser =>', newUser);
+
 
     const res = await fetch('/api/users', {
       method: 'POST',
@@ -63,7 +64,7 @@ export default function Home() {
     })
 
     const data = await res.json();
-    console.log('data =>', data);
+
 
 
   }
@@ -146,4 +147,16 @@ export default function Home() {
   )
 
 
+}
+
+export async function getStaticProps(context) {
+
+  connectToDB();
+  const users = await userModel.find({});
+
+  return {
+    props: {
+      users: JSON.parse(JSON.stringify(users))
+    }
+  }
 }
